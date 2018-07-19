@@ -26,10 +26,9 @@ class App extends Component {
   }
 
   removeContact = (contact) => {
-    const { contacts } = this.state
-    this.setState({
-      contacts: contacts.filter((c) => c.id !== contact.id)
-    })
+    this.setState((preState) => ({
+      contacts: preState.contacts.filter((c) => c.id !== contact.id)
+    }))
   }
   
   render() {
