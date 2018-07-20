@@ -37,6 +37,18 @@ class ListContacts extends Component {
             showingContacts = contacts
         }
         
+        let showingResultBar 
+        if (showingContacts.length !== contacts.length) {
+            showingResultBar = (
+                <div className='showing-contacts'>
+                        <span>Now showing {showingContacts.length} of {contacts.length} total</span> 
+                        <button onClick={this.clearQuery} >
+                            Show all
+                        </button>
+                </div>
+            )
+        }
+        
         showingContacts.sort(sortBy('name'))
         return (
             <div className='list-contacts'>
@@ -52,14 +64,7 @@ class ListContacts extends Component {
                     <button className='add-contact'>Add Contact</button>
                 </div>
                
-                {showingContacts.length !== contacts.length && (
-                    <div className='showing-contacts'>
-                        <span>Now showing {showingContacts.length} of {contacts.length} total</span> 
-                        <button onClick={this.clearQuery} >
-                            Show all
-                        </button>
-                    </div>
-                )}
+                {showingResultBar}
 
                 <ol className='contact-list'>
                 {showingContacts.map((contact) => {
